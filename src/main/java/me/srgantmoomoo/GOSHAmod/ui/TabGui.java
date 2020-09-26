@@ -27,6 +27,7 @@ public class TabGui extends Module {
 		super ("tabGui", "cloocky clocky", Category.MODULES);
 		this.setKey(Keyboard.KEY_NONE);
 		toggled = true;
+		Tab = true;
 	}
 	
 	@SubscribeEvent
@@ -51,7 +52,7 @@ public class TabGui extends Module {
 			int color3 = 0xfffffacd;
 			
 			Gui.drawRect(1, 20, 69, 76, 0x80000000);
-			Gui.drawRect(2, 22 + currentTab * 14 - 1, 68, 22 + currentTab * 14 + 11, 0xffb5651d);
+			Gui.drawRect(2, 22 + currentTab * 14 - 1, 68, 22 + currentTab * 14 + 11, 0xff5cb3ff);
 			//border
 			Gui.drawRect(0, 19, 70, 20, 0xffffffff); // top
 			Gui.drawRect(0, 77, 70, 76, 0xffffffff); // bottom
@@ -60,8 +61,7 @@ public class TabGui extends Module {
 			
 			int count = 0;
 			for(Category c : Category.values()) {
-				if(!c.name.equals("moo render"))
-					if(!c.name.equals("moo client"))
+				if(!c.name.equals("RENDER"))
 				fr.drawStringWithShadow(c.name, 4, 23 + count * 14, 0xffffffff);
 			
 				count++;
@@ -78,7 +78,7 @@ public class TabGui extends Module {
 		if (modules.size() == 0)
 			return;
 			Gui.drawRect(72, 20, 140, 20 + modules.size() * 14 , 0x80000000);
-			Gui.drawRect(73, 22 + category.moduleIndex * 14 - 1, 139, 22 + category.moduleIndex * 14 + 11, 0xffb5651d);
+			Gui.drawRect(73, 22 + category.moduleIndex * 14 - 1, 139, 22 + category.moduleIndex * 14 + 11, 0xff5cb3ff);
 			
 			//border
 			Gui.drawRect(71, 19, 141, 20, 0xffffffff); // top
@@ -111,7 +111,7 @@ public class TabGui extends Module {
 				}else
 					category.moduleIndex--;
 			}else {
-				if(category.name.equals("moo modules")) {
+				if(category.name.equals("GOSHA")) {
 					if(currentTab >= Category.values().length - 1) {
 						currentTab = 3;
 						}else

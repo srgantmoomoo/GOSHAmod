@@ -1,4 +1,4 @@
-package me.srgantmoomoo.GOSHAmod.module.modules.moomodules;
+package me.srgantmoomoo.GOSHAmod.module.modules.goshamods;
 
 import org.lwjgl.input.Keyboard;
 

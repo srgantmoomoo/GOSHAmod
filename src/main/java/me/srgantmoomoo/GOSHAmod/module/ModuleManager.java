@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.srgantmoomoo.GOSHAmod.Main;
-import me.srgantmoomoo.GOSHAmod.module.modules.moomodules.ClickGuiInt;
-import me.srgantmoomoo.GOSHAmod.module.modules.moomodules.Sprint;
+import me.srgantmoomoo.GOSHAmod.module.modules.goshamods.ClickGuiInt;
+import me.srgantmoomoo.GOSHAmod.module.modules.goshamods.Sprint;
 import me.srgantmoomoo.GOSHAmod.ui.TabGui;
 
 public class ModuleManager {

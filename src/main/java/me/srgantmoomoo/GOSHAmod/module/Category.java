@@ -1,7 +1,7 @@
 package me.srgantmoomoo.GOSHAmod.module;
 
 public enum Category {
-	MODULES("moo modules"), CONST("constantiam"),TWOBTWOT("2b2t"), ANARCHYBAR("anarchy.bar"), RENDER("moo render"), CLIENT("moo client");
+	MODULES("GOSHA"), CONST("Constantiam"),TWOBTWOT("2b2t"), ANARCHYBAR("Anarchy.bar"), RENDER("RENDER");
 	
 	public String name;
 	public int moduleIndex;

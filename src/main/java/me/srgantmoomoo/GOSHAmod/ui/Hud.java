@@ -29,20 +29,31 @@ public class Hud extends Gui {
 		ScaledResolution sr = new ScaledResolution(mc);
 	    FontRenderer fr = mc.fontRenderer;
 	    
-	    
+	    		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
+	    			Gui.drawRect(52, 0, 77, 10, 0x80000000);
 	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
-	    			
-	    			fr.drawStringWithShadow(Refrence.NAME, 1, 1, 0xffffff); //0xffffff
-	    			fr.drawStringWithShadow(Refrence.VERSION, 51, 1, 0xffb5651d); //0xffffff
+	    			fr.drawStringWithShadow("GOSHA", 1, 1, 0xffffff); //0xffffff
+	            
+	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
+	            	fr.drawStringWithShadow("mod", 32, 1, 0xff5cb3ff);
+	            
+	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
+	    			fr.drawStringWithShadow(Refrence.VERSION, 54, 1, 0xffffff); //0xffffff
+	            
+	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 	    			int y = 2;
 	    			for (Module mod : Main.moduleManager.getModuleList()) {
 	    				if (!mod.getName().equalsIgnoreCase("HUD") && mod.isToggled()) {
 	    				fr.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - fr.getStringWidth(mod.getName()) - 2, y, 0xffffff);
 	    				y += fr.FONT_HEIGHT;
+	    				}
 	    	}
-	    }
+	   }
 	}
 }
+	//darker blue - 0xff157DEC
+	//gosha red - 0xffff0000
+	//gosha blue - 0xff5cb3ff
 	//brown - 0xffb5651d
 	//peach - 0xffffc3b1
 	//nice yellow - 0xfffffacd

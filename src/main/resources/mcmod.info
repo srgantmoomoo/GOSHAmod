@@ -1,14 +1,14 @@
 [
 {
-  "modid": "GOm",
+  "modid": "gom",
   "name": "GOSHA mod",
-  "description": "Example placeholder mod.",
-  "version": "0.1",
+  "description": "gang gang",
+  "version": "0.1.1",
   "mcversion": "${1.12.2}",
   "url": "",
   "updateUrl": "",
   "authorList": ["SrgantMooMoo"],
-  "credits": "Shoutout to everyone over at the GOSHA mod discord",
+  "credits": "Shoutout to everyone over at the GOSHA mod discord!",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
