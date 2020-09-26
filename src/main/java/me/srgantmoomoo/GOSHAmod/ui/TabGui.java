@@ -52,12 +52,12 @@ public class TabGui extends Module {
 			int color3 = 0xfffffacd;
 			
 			Gui.drawRect(1, 20, 69, 76, 0x80000000);
-			Gui.drawRect(2, 22 + currentTab * 14 - 1, 68, 22 + currentTab * 14 + 11, 0xff5cb3ff);
+			Gui.drawRect(1, 21 + currentTab * 14 - 1, 69, 23 + currentTab * 14 + 11, 0xff5cb3ff);
 			//border
-			Gui.drawRect(0, 19, 70, 20, 0xffffffff); // top
-			Gui.drawRect(0, 77, 70, 76, 0xffffffff); // bottom
-			Gui.drawRect(0, 19, 1, 76, 0xffffffff); // left
-			Gui.drawRect(69, 20, 70, 76, 0xffffffff); // right
+			//Gui.drawRect(0, 19, 70, 20, 0xffffffff); // top
+			//Gui.drawRect(0, 77, 70, 76, 0xffffffff); // bottom
+			//Gui.drawRect(0, 19, 1, 76, 0xffffffff); // left
+			//Gui.drawRect(69, 20, 70, 76, 0xffffffff); // right
 			
 			int count = 0;
 			for(Category c : Category.values()) {
@@ -77,21 +77,21 @@ public class TabGui extends Module {
 		int count = 0;
 		if (modules.size() == 0)
 			return;
-			Gui.drawRect(72, 20, 140, 20 + modules.size() * 14 , 0x80000000);
-			Gui.drawRect(73, 22 + category.moduleIndex * 14 - 1, 139, 22 + category.moduleIndex * 14 + 11, 0xff5cb3ff);
+			Gui.drawRect(70, 20, 140, 20 + modules.size() * 14 , 0x80000000);
+			Gui.drawRect(70, 21 + category.moduleIndex * 14 - 1, 140, 23 + category.moduleIndex * 14 + 11, 0xff5cb3ff);
 			
 			//border
-			Gui.drawRect(71, 19, 141, 20, 0xffffffff); // top
-			Gui.drawRect(71, 63, 141, 62, 0xffffffff); // bottom
-			Gui.drawRect(71, 19, 72, 62, 0xffffffff); // left
-			Gui.drawRect(140, 20, 141, 62, 0xffffffff); // right
+			//Gui.drawRect(71, 19, 141, 20, 0xffffffff); // top
+			//Gui.drawRect(71, 63, 141, 62, 0xffffffff); // bottom
+			//Gui.drawRect(71, 19, 72, 62, 0xffffffff); // left
+			//Gui.drawRect(140, 20, 141, 62, 0xffffffff); // right
 			
 			count = 0;
 			for(Module m : modules) {
-				fr.drawStringWithShadow(m.getName(), 4 + 72, 23 + count * 14, -1);
+				fr.drawStringWithShadow(m.getName(), 4 + 70, 23 + count * 14, -1);
 				if(m.toggled) 
-					Gui.drawRect(72, 21 + count * 14, 73, 33 + count * 14, 0xffffffff);
-				fr.drawStringWithShadow(m.getName(), 4 + 72, 23 + count * 14, -1);
+					Gui.drawRect(70, 21 + count * 14, 71, 33 + count * 14, 0xffffffff);
+				fr.drawStringWithShadow(m.getName(), 4 + 70, 23 + count * 14, -1);
 				count++;
 					}
 				}
@@ -117,10 +117,12 @@ public class TabGui extends Module {
 						}else
 							currentTab = 3;
 				}else {
+					if(Tab) {
 				if(currentTab <= 0) {
 					currentTab = Category.values().length - 1;
 				}else
 					currentTab--;
+					}
 				}
 			}
 		}
@@ -133,39 +135,40 @@ public class TabGui extends Module {
 					}else
 						category.moduleIndex++;
 			}else {
-				if(category.name.equals("anarchy.bar")) {
+				if(category.name.equals("Anarchy.bar")) {
 					if(currentTab >= Category.values().length - 1) {
 						currentTab = 0;
 						}else
 							currentTab = 0;
 				}else {
+					if(Tab) {
 				if(currentTab >= Category.values().length - 1) {
 					currentTab = 0;
 					}else
 						currentTab++;
+					}
 				}
 			}
 		}
 		
 		if(keyCode == Keyboard.KEY_RIGHT) {
+			if(Tab) {
 			if(expanded && modules.size() !=0) {
 				Module module = modules.get(category.moduleIndex);
 				if(!module.getName().equals("tabGui"))
 					module.toggle();
 			}else {
 				expanded = true;
-			
-	
+			}
 		}
 		}
 		
 		if(keyCode == Keyboard.KEY_LEFT) {
-			expanded = false;
-		}
-		
-		if(keyCode == Keyboard.KEY_RCONTROL) {
-			Tab = false;
-			expanded = false;
+			if(!expanded) {
+				Tab = false;
+				expanded = false;
+			}else
+				expanded = false;
 				}
 			}
 		}
