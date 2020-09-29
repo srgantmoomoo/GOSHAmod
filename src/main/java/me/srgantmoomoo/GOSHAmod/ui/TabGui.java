@@ -29,6 +29,12 @@ public class TabGui extends Module {
 		toggled = true;
 	}
 	
+	public static int rainbow(int delay) {
+		   double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+		   rainbowState %= -360;
+	       return Color.getHSBColor((float) (rainbowState / -360.0f), 0.5f, 1f).getRGB();
+	}
+	
 	@SubscribeEvent
     public void onRender(RenderGameOverlayEvent event) {
 		if (!event.getType().equals(event.getType().TEXT)) {
@@ -36,19 +42,9 @@ public class TabGui extends Module {
 		}
 		FontRenderer fr = mc.fontRenderer;
 		if(Tab) {
-			
-			//Category category = Category.values()[currentTab];
-			//List<Module> modules = ModuleManager.getModulesByCategory(category);
-			
-			//Module module = modules.get(category.moduleIndex);
-			
-			fr.drawStringWithShadow("tab", 1, 16, 0xffffff);
+			final int[] counter = {1};
+			fr.drawStringWithShadow("tab", 1, 16, 0xffffffff);
 			fr.drawStringWithShadow(">", 19, 16, 0xffffffff);
-			
-			float hue = (System.currentTimeMillis() % 5000) / 5000f;
-			int color = Color.HSBtoRGB(hue, (float) 0.3, 1);
-			int color2 = 0xffFFB6C1;
-			int color3 = 0xfffffacd;
 			
 			Gui.drawRect(1, 25, 69, 81, 0x80000000);
 			Gui.drawRect(1, 26 + currentTab * 14 - 1, 69, 28 + currentTab * 14 + 11, 0xff5cb3ff);
@@ -67,6 +63,7 @@ public class TabGui extends Module {
 			}
 				
 		}else {
+			final int[] counter = {1};
 			fr.drawStringWithShadow("<", 19, 16, 0xffffffff);
 			fr.drawStringWithShadow("tab", 1, 16, 0xffffffff);
 		}

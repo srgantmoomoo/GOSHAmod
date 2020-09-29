@@ -51,7 +51,7 @@ public class Hud extends Gui {
 		ScaledResolution sr = new ScaledResolution(mc);
 	    FontRenderer fr = mc.fontRenderer;
 	    
-	    		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+	    		if(event.getType() == RenderGameOverlayEvent.ElementType.BOSSHEALTH) {
 	    			mc.renderEngine.bindTexture(watermark);
 	    			drawScaledCustomSizeModalRect(-2, -20, 0, 0, 60, 60, 60, 60, 60, 60);
 	    		}
@@ -64,19 +64,28 @@ public class Hud extends Gui {
 	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
 	            	//fr.drawStringWithShadow("mod", 32, 1, 0xff5cb3ff);
 	            
-	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
-	    			fr.drawStringWithShadow(Refrence.VERSION, 56, 1, 0xffffff); //0xffffff 
+	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+	            	final int[] counter = {1};
+	    			fr.drawStringWithShadow(Refrence.VERSION, 56, 1, 0xff5cb3ff); //0xffffff 
+	            }
 	            
 	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 	    			int y = 2;
+	    			final int[] counter = {1};
 	    			for (Module mod : Main.moduleManager.getModuleList()) {
 	    				if (!mod.getName().equalsIgnoreCase("TabGui") && mod.isToggled()) {
-	    				fr.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - fr.getStringWidth(mod.getName() + mod.getModCat()) - 2, y, 0xffffff);
+	    				fr.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - fr.getStringWidth(mod.getName() + mod.getModCat()) - 2, y, rainbow(counter[0] * 300));
 	    				fr.drawStringWithShadow(mod.getModCat(), sr.getScaledWidth() - fr.getStringWidth(mod.getModCat()) - 1, y, 0xffa9a9a9);
 	    				y += fr.FONT_HEIGHT;
+	    				counter[0]++;
 	    				}
-	    	}
+	    			}
+	            }
 	   }
+	   public static int rainbow(int delay) {
+		   double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+		   rainbowState %= -360;
+	       return Color.getHSBColor((float) (rainbowState / -360.0f), 0.5f, 1f).getRGB();
 	}
 }
 	//darker blue - 0xff157DEC
