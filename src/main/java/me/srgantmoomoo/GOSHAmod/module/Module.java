@@ -7,15 +7,16 @@ public class Module {
 	
 	protected static Minecraft mc = Minecraft.getMinecraft();
 	
-	private String name, description;
+	private String name, description, modcat;
 	private int key;
 	private Category category;
 	public boolean toggled;
 	
-	public Module(String name, String description, Category category) {
+	public Module(String name, String description, String modcat, Category category) {
 		super();
 		this.name = name;
 		this.description = description;
+		this.modcat = modcat;
 		this.key = 0;
 		this.category = category;
 		this.toggled = false;
@@ -23,6 +24,10 @@ public class Module {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public String getModCat() {
+		return modcat;
 	}
 	
 	public void setDescription(String description) {

@@ -5,11 +5,11 @@ import org.lwjgl.input.Keyboard;
 import me.srgantmoomoo.GOSHAmod.module.Category;
 import me.srgantmoomoo.GOSHAmod.module.Module;
 
-public class ClickGuiInt extends Module {
-
-	public ClickGuiInt() {
-		super("clickGui", "clicky clacky suck my assy", Category.MODULES);
-		this.setKey(Keyboard.KEY_G);
-	}
+public class SprintG extends Module{
+	
+	public SprintG() {
+		super ("Sprint", "sprints when holding w", "", Category.GOSHA);
+		this.setKey(Keyboard.KEY_NONE);
+	 }
 
 }

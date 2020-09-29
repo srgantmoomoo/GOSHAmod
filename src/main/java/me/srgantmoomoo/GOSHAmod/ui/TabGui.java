@@ -24,10 +24,9 @@ public class TabGui extends Module {
 	private Minecraft mc = Minecraft.getMinecraft();
 	
 	public TabGui() {
-		super ("tabGui", "cloocky clocky", Category.MODULES);
+		super ("tabGui", "cloocky clocky", "", Category.RENDER);
 		this.setKey(Keyboard.KEY_NONE);
 		toggled = true;
-		Tab = true;
 	}
 	
 	@SubscribeEvent
@@ -88,11 +87,19 @@ public class TabGui extends Module {
 			
 			count = 0;
 			for(Module m : modules) {
+				if(m.getName().equals("EntitySpeed")) {
+					fr.drawStringWithShadow("EntitySpeed", 4 + 70, 28 + count * 14, -1);
+					if(m.toggled) 
+						Gui.drawRect(70, 26 + count * 14, 71, 38 + count * 14, 0xffffffff);
+					fr.drawStringWithShadow("EntitySpeed", 4 + 70, 28 + count * 14, -1);
+					count++;
+				}else {
 				fr.drawStringWithShadow(m.getName(), 4 + 70, 28 + count * 14, -1);
 				if(m.toggled) 
 					Gui.drawRect(70, 26 + count * 14, 71, 38 + count * 14, 0xffffffff);
 				fr.drawStringWithShadow(m.getName(), 4 + 70, 28 + count * 14, -1);
 				count++;
+						}
 					}
 				}
 			}

@@ -1,8 +1,11 @@
 package me.srgantmoomoo.GOSHAmod.ui;
 import java.awt.Color;
+import java.util.Collections;
+import java.util.Comparator;
 
 import me.srgantmoomoo.GOSHAmod.Main;
 import me.srgantmoomoo.GOSHAmod.module.Module;
+import me.srgantmoomoo.GOSHAmod.module.ModuleManager;
 import me.srgantmoomoo.GOSHAmod.util.Refrence;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -16,6 +19,20 @@ public class Hud extends Gui {
 	 
 	private Minecraft mc = Minecraft.getMinecraft();
 	
+	public static class ModuleComparator implements Comparator<Module> {
+		
+		@Override
+		public int compare(Module arg0, Module arg1) {
+			if(Minecraft.getMinecraft().fontRenderer.getStringWidth(arg0.getName()) > Minecraft.getMinecraft().fontRenderer.getStringWidth(arg1.getName())) {
+				return -1;
+			}
+			if(Minecraft.getMinecraft().fontRenderer.getStringWidth(arg0.getName()) > Minecraft.getMinecraft().fontRenderer.getStringWidth(arg1.getName())) {
+				return 1;
+			}
+			return 0;
+		}
+	}
+	
 	private final ResourceLocation watermark = new ResourceLocation(Refrence.MOD_ID, "textures/watermark.png");
 	private final int tex_width = 156, tex_height = 118, logo_width = 10, logo_height = 10;
 	    
@@ -23,6 +40,9 @@ public class Hud extends Gui {
 	
 		@SubscribeEvent
 	    public void renderOverlay(RenderGameOverlayEvent event) {
+			
+		Collections.sort(Main.moduleManager.modules, new ModuleComparator());
+			
 		float hue = (System.currentTimeMillis() % 5000) / 5000f;
 		int color = Color.HSBtoRGB(hue, (float) 0.3, 1);
 		int color2 = 0xffffB6C1;
@@ -33,7 +53,7 @@ public class Hud extends Gui {
 	    
 	    		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 	    			mc.renderEngine.bindTexture(watermark);
-	    			drawScaledCustomSizeModalRect(-6, -26, 0, 0, 70, 70, 70, 70, 70, 70);
+	    			drawScaledCustomSizeModalRect(-2, -20, 0, 0, 60, 60, 60, 60, 60, 60);
 	    		}
 	    
 	    		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
@@ -45,13 +65,14 @@ public class Hud extends Gui {
 	            	//fr.drawStringWithShadow("mod", 32, 1, 0xff5cb3ff);
 	            
 	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT)
-	    			fr.drawStringWithShadow(Refrence.VERSION, 58, 1, 0xffffff); //0xffffff 
+	    			fr.drawStringWithShadow(Refrence.VERSION, 56, 1, 0xffffff); //0xffffff 
 	            
 	            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 	    			int y = 2;
 	    			for (Module mod : Main.moduleManager.getModuleList()) {
-	    				if (!mod.getName().equalsIgnoreCase("HUD") && mod.isToggled()) {
-	    				fr.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - fr.getStringWidth(mod.getName()) - 2, y, 0xffffff);
+	    				if (!mod.getName().equalsIgnoreCase("TabGui") && mod.isToggled()) {
+	    				fr.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - fr.getStringWidth(mod.getName() + mod.getModCat()) - 2, y, 0xffffff);
+	    				fr.drawStringWithShadow(mod.getModCat(), sr.getScaledWidth() - fr.getStringWidth(mod.getModCat()) - 1, y, 0xffa9a9a9);
 	    				y += fr.FONT_HEIGHT;
 	    				}
 	    	}
@@ -64,3 +85,4 @@ public class Hud extends Gui {
 	//brown - 0xffb5651d
 	//peach - 0xffffc3b1
 	//nice yellow - 0xfffffacd
+	//grey - 0xff808080
